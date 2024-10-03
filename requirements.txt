@@ -3,3 +3,4 @@ torch
 gtts
 pandas
 streamlit
+sentencepiece
