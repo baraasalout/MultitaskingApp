@@ -106,7 +106,7 @@ task = st.sidebar.selectbox(
     "Select a task",
     ("Object Detection", "Image Captioning", "Sentiment Analysis", "Zero-Shot Classification", "Fill Mask", "Table Question Answering","Visual Question Answering")
 )
-
+uploaded_image = None
 # Object Detection Task
 if task == "Object Detection":
   
