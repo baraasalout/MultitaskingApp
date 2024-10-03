@@ -108,7 +108,7 @@ task = st.sidebar.selectbox(
 )
 
 # Object Detection Task
-if task == "Object Detection" and uploaded_image is not None:
+if task == "Object Detection":
     
     # Image input for Object Detection and Image Captioning
     uploaded_image = None
@@ -165,7 +165,7 @@ if task == "Object Detection" and uploaded_image is not None:
             st.error(f"Error in object detection: {e}")
 
 # Image Captioning Task
-elif task == "Image Captioning" and uploaded_image is not None:
+elif task == "Image Captioning":
         
     # Image input for Object Detection and Image Captioning
     uploaded_image = None
