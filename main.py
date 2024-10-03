@@ -147,12 +147,11 @@ if task == "Object Detection":
     if uploaded_image != None:
         resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
         st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
-        confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
 
         with st.spinner("Detecting objects..."):
             try:
                 object_detector = load_object_detector()
-                objects = detect_objects(resized_image, object_detector, threshold=confidence_threshold)
+                objects = detect_objects(resized_image, object_detector, threshold=0.5)
                 st.write("Objects detected:")
                 translated_labels = []
                 for obj in objects:
@@ -188,7 +187,7 @@ elif task == "Image Captioning":
     if uploaded_image != None:
         resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
         st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
-        confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
+        confidence_threshold =0.5
         st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
             # Language selection
         st.sidebar.title("Select Language")
@@ -206,7 +205,7 @@ elif task == "Image Captioning":
         if uploaded_image != None:
             resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
             st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
-            confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
+            confidence_threshold = 0.5
         st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
         with st.spinner("Generating and translating caption..."):
             try:
