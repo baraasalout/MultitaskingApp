@@ -162,7 +162,7 @@ def perform_table_question_answering():
         st.write("Table:")
         st.dataframe(table)
 
-        query = st.text_input("Enter your question about the table>>:")
+        query = st.text_input("Enter your question about the table:")
         if query:
             with st.spinner("Answering your question..."):
                 tqa_model = pipeline(task="table-question-answering", model="google/tapas-base-finetuned-wtq")
