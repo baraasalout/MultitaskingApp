@@ -149,18 +149,18 @@ if task == "Object Detection":
         st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
         confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
 
-    with st.spinner("Detecting objects..."):
-        try:
-            object_detector = load_object_detector()
-            objects = detect_objects(resized_image, object_detector, threshold=confidence_threshold)
-            st.write("Objects detected:")
-            translated_labels = []
-            for obj in objects:
-                translated_label = translate_text(obj['label'], selected_language_code)
-                translated_labels.append(translated_label)
-                st.write(f"- {translated_label} with confidence {obj['score']:.2f}")
-        except Exception as e:
-            st.error(f"Error in object detection: {e}")
+        with st.spinner("Detecting objects..."):
+            try:
+                object_detector = load_object_detector()
+                objects = detect_objects(resized_image, object_detector, threshold=confidence_threshold)
+                st.write("Objects detected:")
+                translated_labels = []
+                for obj in objects:
+                    translated_label = translate_text(obj['label'], selected_language_code)
+                    translated_labels.append(translated_label)
+                    st.write(f"- {translated_label} with confidence {obj['score']:.2f}")
+            except Exception as e:
+                st.error(f"Error in object detection: {e}")
 
 # Image Captioning Task
 elif task == "Image Captioning":
@@ -188,34 +188,34 @@ elif task == "Image Captioning":
         resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
         st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
         confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
-    st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
-        # Language selection
-    st.sidebar.title("Select Language")
-    languages = {
-        "English": "en",
-        "French": "fr",
-        "Spanish": "es",
-        "German": "de",
-        "Italian": "it",
-        "Arabic": "ar"
-    }
-    selected_language = st.sidebar.selectbox("Choose the language for the caption", list(languages.keys()))
-    selected_language_code = languages[selected_language]
-
-    if uploaded_image != None:
-        resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
         st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
-        confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
-    st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
-    with st.spinner("Generating and translating caption..."):
-        try:
-            caption_generator = load_caption_generator()
-            caption = generate_caption(resized_image, caption_generator)
-            translated_caption = translate_text(caption, selected_language_code)
-            st.write(f"Image Caption in {selected_language}: {translated_caption}")
-            st.markdown(text_to_speech(translated_caption, selected_language_code), unsafe_allow_html=True)
-        except Exception as e:
-            st.error(f"Error in caption generation or translation: {e}")
+            # Language selection
+        st.sidebar.title("Select Language")
+        languages = {
+            "English": "en",
+            "French": "fr",
+            "Spanish": "es",
+            "German": "de",
+            "Italian": "it",
+            "Arabic": "ar"
+        }
+        selected_language = st.sidebar.selectbox("Choose the language for the caption", list(languages.keys()))
+        selected_language_code = languages[selected_language]
+    
+        if uploaded_image != None:
+            resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
+            st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
+            confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
+        st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
+        with st.spinner("Generating and translating caption..."):
+            try:
+                caption_generator = load_caption_generator()
+                caption = generate_caption(resized_image, caption_generator)
+                translated_caption = translate_text(caption, selected_language_code)
+                st.write(f"Image Caption in {selected_language}: {translated_caption}")
+                st.markdown(text_to_speech(translated_caption, selected_language_code), unsafe_allow_html=True)
+            except Exception as e:
+                st.error(f"Error in caption generation or translation: {e}")
 
 # Sentiment Analysis Task
 elif task == "Sentiment Analysis":
