@@ -129,21 +129,22 @@ if task in ["Object Detection", "Image Captioning"]:
             except Exception as e:
                 st.error(f"Error capturing image: {e}")
 
-# Language selection
-st.sidebar.title("Select Language")
-languages = {
-    "English": "en",
-    "French": "fr",
-    "Spanish": "es",
-    "German": "de",
-    "Italian": "it",
-    "Arabic": "ar"
-}
-selected_language = st.sidebar.selectbox("Choose the language for the caption", list(languages.keys()))
-selected_language_code = languages[selected_language]
 
 # Object Detection Task
 if task == "Object Detection" and uploaded_image is not None:
+    # Language selection
+    st.sidebar.title("Select Language")
+    languages = {
+        "English": "en",
+        "French": "fr",
+        "Spanish": "es",
+        "German": "de",
+        "Italian": "it",
+        "Arabic": "ar"
+    }
+    selected_language = st.sidebar.selectbox("Choose the language for the caption", list(languages.keys()))
+    selected_language_code = languages[selected_language]
+
     resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
     st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
 
