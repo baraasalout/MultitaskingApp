@@ -144,10 +144,10 @@ if task == "Object Detection":
     selected_language = st.sidebar.selectbox("Choose the language for the caption", list(languages.keys()))
     selected_language_code = languages[selected_language]
 
-    resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
-    st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
-
-    confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
+    if uploaded_image != None:
+        resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
+        st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
+        confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
 
     with st.spinner("Detecting objects..."):
         try:
@@ -184,7 +184,10 @@ elif task == "Image Captioning":
                     uploaded_image = Image.open(captured_image)
                 except Exception as e:
                     st.error(f"Error capturing image: {e}")
-    resized_image = uploaded_image.resize((512, 512))
+    if uploaded_image != None:
+        resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
+        st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
+        confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
     st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
         # Language selection
     st.sidebar.title("Select Language")
@@ -199,7 +202,10 @@ elif task == "Image Captioning":
     selected_language = st.sidebar.selectbox("Choose the language for the caption", list(languages.keys()))
     selected_language_code = languages[selected_language]
 
-    resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
+    if uploaded_image != None:
+        resized_image = uploaded_image.resize((512, 512))  # Resize early to save memory
+        st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
+        confidence_threshold = st.slider("Set object detection confidence threshold", 0.1, 1.0, 0.5)
     st.image(resized_image, caption="Uploaded/Captured Image (Resized)", use_column_width=True)
     with st.spinner("Generating and translating caption..."):
         try:
