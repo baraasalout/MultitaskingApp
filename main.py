@@ -106,11 +106,11 @@ task = st.sidebar.selectbox(
     "Select a task",
     ("Object Detection", "Image Captioning", "Sentiment Analysis", "Zero-Shot Classification", "Fill Mask", "Table Question Answering","Visual Question Answering")
 )
-uploaded_image = None
 # Object Detection Task
 if task == "Object Detection":
   
     if task in ["Object Detection", "Image Captioning"]:
+        uploaded_image = None
         st.sidebar.title("Choose Image Input")
         input_type = st.sidebar.radio("How would you like to provide the image?", ("Upload Image", "Capture Image"))
     
@@ -166,6 +166,7 @@ if task == "Object Detection":
 elif task == "Image Captioning":
         
     if task in ["Object Detection", "Image Captioning"]:
+        uploaded_image = None
         st.sidebar.title("Choose Image Input")
         input_type = st.sidebar.radio("How would you like to provide the image?", ("Upload Image", "Capture Image"))
     
@@ -295,6 +296,7 @@ elif task == "Table Question Answering":
                     st.error(f"Error in answering the table question: {e}")
 
 elif task == "Visual Question Answering":
+    uploaded_image = None
     if task in ["Object Detection", "Image Captioning"]:
         st.sidebar.title("Choose Image Input")
         input_type = st.sidebar.radio("How would you like to provide the image?", ("Upload Image", "Capture Image"))
