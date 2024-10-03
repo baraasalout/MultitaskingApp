@@ -294,7 +294,7 @@ elif task == "Table Question Answering":
 
 elif task == "Visual Question Answering":
     uploaded_image = None
-   if task in ["Object Detection", "Image Captioning"]:
+    if task in ["Object Detection", "Image Captioning"]:
         st.sidebar.title("Choose Image Input")
         input_type = st.sidebar.radio("How would you like to provide the image?", ("Upload Image", "Capture Image"))
     
@@ -308,7 +308,7 @@ elif task == "Visual Question Answering":
     
     # File uploader for image input
     uploaded_image = st.file_uploader("Upload your document image (PNG, JPG, etc.)", type=["png", "jpg", "jpeg"])
-
+    
     if uploaded_image is not None:
         # Open the uploaded image using PIL
         image = Image.open(uploaded_image)
