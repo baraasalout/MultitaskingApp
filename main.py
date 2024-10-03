@@ -293,7 +293,19 @@ elif task == "Table Question Answering":
                     st.error(f"Error in answering the table question: {e}")
 
 elif task == "Visual Question Answering":
-
+    uploaded_image = None
+   if task in ["Object Detection", "Image Captioning"]:
+        st.sidebar.title("Choose Image Input")
+        input_type = st.sidebar.radio("How would you like to provide the image?", ("Upload Image", "Capture Image"))
+    
+        if input_type == "Upload Image":
+            uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+            if uploaded_file is not None:
+                try:
+                    uploaded_image = Image.open(uploaded_file)
+                except Exception as e:
+                    st.error(f"Error loading image: {e}")
+    
     # File uploader for image input
     uploaded_image = st.file_uploader("Upload your document image (PNG, JPG, etc.)", type=["png", "jpg", "jpeg"])
 
