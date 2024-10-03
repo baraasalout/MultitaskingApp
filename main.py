@@ -171,7 +171,7 @@ def perform_table_question_answering():
 
 # Main app logic
 st.title("Multitasking App")
-task = st.sidebar.selectbox("Select a task", ("Object Detection", "Image Captioning", "Sentiment Analysis", "Fill Mask", "Visual Question Answering", "Table Question Answering"))
+task = st.sidebar.selectbox("Select a task", ("Object Detection", "Image Captioning" ,"Visual Question Answering", "Sentiment Analysis", "Fill Mask", "Table Question Answering"))
 
 if task == "Object Detection":
     perform_object_detection()
